@@ -2,7 +2,7 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 
-const app = express();
+var app = express();
 
 
 // Body Parser Middleware
