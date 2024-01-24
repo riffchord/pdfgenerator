@@ -14,6 +14,7 @@ app.use((req, res, next) => {
     next();
 });
 app.post('/generate-pdf', async (req, res) => {
+    console.log("....Generating PDF.....")
     // Extract URL from request body
     const { url } = req.body;
 
@@ -34,7 +35,7 @@ app.post('/generate-pdf', async (req, res) => {
         });
 
         await browser.close();
-
+        console.log("....Finished.....")
         res.contentType('application/pdf');
         res.send(pdf);
     } catch (error) {
