@@ -43,3 +43,4 @@ app.post('/generate-pdf', async (req, res) => {
     }
 });
 
+module.exports = app;
