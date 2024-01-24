@@ -2,19 +2,13 @@ const express = require('express');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 
-var app = express();
-
+const app = express();
+const port = 3000;
 
 // Body Parser Middleware
 app.use(bodyParser.json());
-// Enable CORS for all routes
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+
 app.post('/generate-pdf', async (req, res) => {
-    console.log("....Generating PDF.....")
     // Extract URL from request body
     const { url } = req.body;
 
@@ -35,7 +29,7 @@ app.post('/generate-pdf', async (req, res) => {
         });
 
         await browser.close();
-        console.log("....Finished.....")
+
         res.contentType('application/pdf');
         res.send(pdf);
     } catch (error) {
@@ -43,4 +37,6 @@ app.post('/generate-pdf', async (req, res) => {
     }
 });
 
-module.exports = app;
+app.listen(port, () => {
+    console.log(`PDF Generator API listening at http://localhost:${port}`);
+});
