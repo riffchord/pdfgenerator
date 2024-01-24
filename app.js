@@ -37,6 +37,3 @@ app.post('/generate-pdf', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`PDF Generator API listening at http://localhost:${port}`);
-});
